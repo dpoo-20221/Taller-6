@@ -467,7 +467,7 @@ public class Libreria
 		}
 	}
 	
-	public void borrarLibros(String cadenaAutores) throws Exception 
+	public int borrarLibros(String cadenaAutores) throws Exception 
 	{   
 		ArrayList<String> listaAutores = new ArrayList<String>(Arrays.asList(cadenaAutores));
 		ArrayList<String> autoresSinLibros = new ArrayList<String>();
@@ -483,6 +483,7 @@ public class Libreria
 			if (librosAutor.isEmpty() == false)
 			{
 				autoresConLibros.add(autor);
+				libros.addAll(librosAutor);
 				
 			}
 			else
@@ -512,8 +513,23 @@ public class Libreria
 		else
 		{
 		    total = listaAutores.size();
+		    for (int i = 0; i < libros.size(); i++)
+			{
+				String libro = autoresConLibros.get(i);
+				for(int n = 0; n < catalogo.size(); i++) 
+				{
+					if (catalogo.get(n).darAutor().equals(libro))
+					{
+						catalogo.remove(n);
+						break;
+					}
+					
+				}
+			}				    
 		    
 		}
+		
+		return total;
 		
 	}
 
